@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: employee-management-system
+
+  datasource:
+    url: jdbc:sqlserver://localhost\SQLEXPRESS:1443;databaseName=EmployeeDB;encrypt=true;trustServerCertificate=true
+    username: usman
+    password: usman123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+Server:
+  port: 8080
