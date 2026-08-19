@@ -1,5 +1,7 @@
 package com.employee.ems.services;
 
+import com.employee.ems.dto.EmployeeRequestDTO;
+import com.employee.ems.dto.EmployeeResponseDTO;
 import com.employee.ems.model.Employee;
 import com.employee.ems.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,36 @@ public class EmployeeServiceImpl implements EmployeeService{
         this.employeeRepository = employeeRepository;
     }
 
-    @Override
-    public Employee saveEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    
+    public EmployeeResponseDTO saveEmployee(EmployeeRequestDTO employeeRequestDTO) {
+
+        Employee employee = Employee.builder()
+                .employeeCode(employeeRequestDTO.getEmployeeCode())
+                .firstName(employeeRequestDTO.getFirstName())
+                .lastName(employeeRequestDTO.getLastName())
+                .email(employeeRequestDTO.getEmail())
+                .phone(employeeRequestDTO.getPhone())
+                .salary(employeeRequestDTO.getSalary())
+                .designation(employeeRequestDTO.getDesignation())
+                .joiningDate(employeeRequestDTO.getJoiningDate())
+                .status(employeeRequestDTO.getStatus())
+                .build();
+
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        return EmployeeResponseDTO.builder()
+                .id(savedEmployee.getId())
+                .employeeCode(savedEmployee.getEmployeeCode())
+                .firstName(savedEmployee.getFirstName())
+                .lastName(savedEmployee.getLastName())
+                .email(savedEmployee.getEmail())
+                .phone(savedEmployee.getPhone())
+                .salary(savedEmployee.getSalary())
+                .designation(savedEmployee.getDesignation())
+                .joiningDate(savedEmployee.getJoiningDate())
+                .status(savedEmployee.getStatus())
+                .build();
+
     }
 
     @Override
