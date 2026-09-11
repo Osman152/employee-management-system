@@ -1,7 +1,5 @@
 package com.employee.ems.controller;
 
-import com.employee.ems.dto.EmployeeRequestDTO;
-import com.employee.ems.dto.EmployeeResponseDTO;
 import com.employee.ems.model.Employee;
 import com.employee.ems.services.EmployeeService;
 import jakarta.validation.Valid;
@@ -23,11 +21,11 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeResponseDTO> createEmployee(@Valid @RequestBody EmployeeRequestDTO employeeRequestDTO) {
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
 
-        EmployeeResponseDTO employeeResponseDTO =  employeeService.saveEmployee(employeeRequestDTO);
+        Employee savedEmployee =  employeeService.saveEmployee(employee);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(employeeResponseDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedEmployee);
     }
 
     @GetMapping
@@ -37,8 +35,8 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        return employeeService.getEmployeeById(id).map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Employee employee = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(employee);
     }
 
     @PutMapping("/{id}")

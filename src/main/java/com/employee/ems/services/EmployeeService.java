@@ -8,11 +8,11 @@ import jakarta.validation.Valid;
 import java.util.*;
 
 public interface EmployeeService {
-    EmployeeResponseDTO saveEmployee(@Valid EmployeeRequestDTO employee);
+    Employee saveEmployee(Employee employee);
 
     List<Employee> getAllEmployees();
 
-    Optional<Employee> getEmployeeById(Long id);
+    Employee getEmployeeById(Long id);
 
     Employee updateEmployee(Long id, Employee employee);
     
