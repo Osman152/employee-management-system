@@ -14,5 +14,5 @@ spring:
     show-sql: true
     open-in-view: false
 
-Server:
+server:
   port: 8080

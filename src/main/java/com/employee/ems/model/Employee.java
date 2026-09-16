@@ -22,23 +22,23 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = " Employee code required.")
+    @NotBlank(message = "Employee code required.")
     @Column(name = "EMPLOYEE_CODE", nullable = false, unique = true)
     private String employeeCode;
 
-    @NotBlank(message = " First name is required.")
+    @NotBlank(message = "First name is required.")
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
 
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @NotBlank(message = " Email is required.")
+    @NotBlank(message = "Email is required.")
     @Email(message = "Invalid Email")
     @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = " Phone No is required.")
+    @NotBlank(message = "Phone No is required.")
     @Pattern(
             regexp = "^03\\d{9}$",
             message = "Phone number must be in the format 03XXXXXXXXX"
@@ -46,7 +46,7 @@ public class Employee {
     @Column(name = "PHONE", nullable = false, unique = true)
     private String phone;
 
-    @NotNull(message = " Salary is required.")
+    @NotNull(message = "Salary is required.")
     @Positive(message = "Salary must be greater than zero")
     @Column(name = "EMPLOYEE_SALARY", nullable = false, precision = 10, scale = 2)
     private BigDecimal salary;
